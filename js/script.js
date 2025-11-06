@@ -69,71 +69,29 @@ const images = document.querySelectorAll('.portfolio-img');
     observer.observe(section);
   }
 
-//   Contact form  Logic 
-const form = document.querySelector("#contactForm");
-  const sendBtn = document.querySelector("#sendBtn");
 
-  //  Enable button when required fields filled
-  const checkForm = () => {
-    const required = ["userName", "userEmail", "userPhone", "userMessage"];
-    const allFilled = required.every(name => form[name].value.trim() !== "");
-    sendBtn.disabled = !allFilled;
-  };
-  form.addEventListener("input", checkForm);
+// Instead of calling Telegram API directly:
+const payload = { name, email, phone, telegram, message };
 
-  //  Handle submit
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+try {
+  sendBtn.textContent = "⏳ Sending...";
+  sendBtn.disabled = true;
 
-    const formData = new FormData(form);
-
-    // Get all form values cleanly with FormData API
-    const name = formData.get("userName").trim();
-    const email = formData.get("userEmail").trim();
-    const phone = formData.get("userPhone").trim();
-    const telegram = formData.get("userTelegram")?.trim() || "—";
-    const message = formData.get("userMessage").trim();
-
-    // 🧩 Telegram credentials
-    const BOT_TOKEN = "8180682419:AAGWFWe7xmGxu2QD6mWP4O2qyNdDx5DZyU4";
-    const CHAT_ID = "891637381";
-
-    const text = `
-📩 *New Message from Contact Form*
-👤 *Name:* ${name}
-📧 *Email:* ${email}
-📞 *Phone:* ${phone}
-💬 *Telegram Username:* ${telegram}
-🗒️ *Message:* ${message}
-    `;
-
-    try {
-      sendBtn.textContent = "⏳ Sending...";
-      sendBtn.disabled = true;
-
-      const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text,
-          parse_mode: "Markdown"
-        }),
-      });
-
-      if (!res.ok) {
-        const err = await res.text();
-        console.error("Telegram API error:", err);
-        throw new Error("Failed to send");
-      }
-
-      alert("✅ Message sent successfully!");
-      form.reset();
-      checkForm();
-    } catch (err) {
-      console.error(err);
-      alert("⚠️ Error sending message. Please try again.");
-    } finally {
-      sendBtn.textContent = "🚀 Submit";
-    }
+  const res = await fetch("/api/sendMessage", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   });
+
+  const data = await res.json();
+  if (!res.ok || !data.ok) throw new Error(data.error || "Failed to send");
+
+  alert("✅ Message sent successfully!");
+  form.reset();
+  checkForm();
+} catch (err) {
+  console.error(err);
+  alert("⚠️ Error sending message. Please try again.");
+} finally {
+  sendBtn.textContent = "🚀 Submit";
+}
