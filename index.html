@@ -129,73 +129,32 @@
 
 	 <!-- Contact  section-->
 	<div class="px-[20%] py-10">
-		<h1 class="text-left font-bold text-4xl mb-10 hover:text-blue-700">Contact</h1>
+	<h1 class="text-left font-bold text-4xl mb-10 hover:text-blue-700">Contact</h1>
 
-		<form id="contactForm" class="flex flex-col gap-8 max-w-6xl">
-			<div class="flex flex-col md:flex-row gap-5">
-			<label for="userName" class="sr-only">Name</label>
-			<input 
-				id="userName"
-				name="userName"
-				type="text"
-				placeholder="Name"
-				autocomplete="name"
-				required
-				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-			>
-			<label for="userEmail" class="sr-only">Email</label>
-			<input 
-				id="userEmail"
-				name="userEmail"
-				type="email"
-				placeholder="Email"
-				autocomplete="email"
-				required
-				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-			>
-			</div>
+	<form id="contactForm" class="flex flex-col gap-8 max-w-6xl">
+		<div class="flex flex-col md:flex-row gap-5">
+		<input id="userName" name="userName" type="text" placeholder="Name" required
+			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
+		<input id="userEmail" name="userEmail" type="email" placeholder="Email" required
+			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
+		</div>
 
-			<div class="flex flex-col md:flex-row gap-5">
-			<label for="userPhone" class="sr-only">Phone</label>
-			<input 
-				id="userPhone"
-				name="userPhone"
-				type="tel"
-				placeholder="+99899-999-99-66"
-				autocomplete="tel"
-				required
-				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-			>
-			<label for="userTelegram" class="sr-only">Telegram Username</label>
-			<input 
-				id="userTelegram"
-				name="userTelegram"
-				type="text"
-				placeholder="@telegram_username (optional)"
-				autocomplete="username"
-				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-			>
-			</div>
+		<div class="flex flex-col md:flex-row gap-5">
+		<input id="userPhone" name="userPhone" type="tel" placeholder="+99899-999-99-66" required
+			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
+		<input id="userTelegram" name="userTelegram" type="text" placeholder="@telegram_username (optional)"
+			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
+		</div>
 
-			<label for="userMessage" class="sr-only">Message</label>
-			<textarea 
-				id="userMessage"
-				name="userMessage"
-				rows="6"
-				placeholder="Type your message here..."
-				required
-				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-			></textarea>
+		<textarea id="userMessage" name="userMessage" rows="6" placeholder="Type your message..." required
+		class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md resize-none focus:ring-2 focus:ring-blue-500"></textarea>
 
-			<button 
-				type="submit"
-				id="sendBtn"
-				class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl px-8 py-3 cursor-pointer rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-				disabled
-				>
-			🚀 Submit
-			</button>
-		</form>
+		<button id="sendBtn" type="submit"
+		class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl px-8 py-3 rounded-lg transition disabled:opacity-50"
+		disabled>
+		🚀 Submit
+		</button>
+	</form>
 	</div>
 
 	<!-- Footer -->

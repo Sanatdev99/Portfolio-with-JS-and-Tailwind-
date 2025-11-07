@@ -91,20 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ====== 💬 Telegram Bot Form Logic ======
+// Telegram Bot Form Logic 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("#contactForm");
   const sendBtn = document.querySelector("#sendBtn");
 
-  if (!form) return; // safety
+  if (!form) return;
 
-  // Enable submit when required fields filled
+  // Enable button when all required fields filled
   form.addEventListener("input", () => {
     const required = [...form.querySelectorAll("[required]")];
     sendBtn.disabled = !required.every(input => input.value.trim());
   });
 
-  // Handle submission
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     sendBtn.disabled = true;
@@ -125,29 +124,19 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(formData),
       });
 
-      const text = await res.text();
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch {
-        console.warn("Response is not JSON:", text);
-      }
+      const data = await res.json();
+      console.log("Response:", data);
 
-      console.log("Response status:", res.status);
-      console.log("Response body:", text);
-
-      if (res.ok && data && data.ok) {
+      if (res.ok && data.ok) {
         sendBtn.textContent = "✅ Sent!";
         form.reset();
       } else {
-        const serverMsg = (data && data.error) ? data.error : text || "Unknown server error";
         sendBtn.textContent = "❌ Error";
-        console.error("Server response:", serverMsg);
-        alert("Message not sent: " + serverMsg);
+        alert("Server Error: " + (data.error || "Unknown"));
       }
     } catch (err) {
       console.error("Network error:", err);
-      sendBtn.textContent = "⚠️ Network error";
+      sendBtn.textContent = "⚠️ Network Error";
     }
 
     setTimeout(() => {
