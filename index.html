@@ -6,64 +6,58 @@
 	<title>Window and Document</title>
 	<link rel="stylesheet" href="./css/style.css">
 	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-	<link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
-	<style>
-	html {
-		scroll-behavior: smooth;
-		scroll-padding-top: 80px; /* height of your fixed navbar */
-	}
-	</style>
-
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<script defer src="./js/script.js"></script>
 </head>
 <body >
 
 	<!-- Topbar -->
-	<div class="bg-blue-600 text-white relative ">
-		<div class="bg-blue-600 z-50 fixed top-0 flex justify-between items-center w-full h-17 gap-10 px-10 md:px-40 shadow-lg hover:shadow-orange-300">
-				<!-- Logo -->
-			<h1 class="font-bold text-2xl">Sanat Abdalov</h1>
+	<div class="bg-blue-600 text-white relative">
+	<div class="bg-blue-600 z-50 fixed top-0 flex justify-between items-center w-full h-17 gap-10 px-10 md:px-40 shadow-lg hover:shadow-orange-300">
+		<!-- Logo -->
+		<h1 class="font-bold text-2xl">Sanat Abdalov</h1>
 
-			<!-- Nav Links (Desktop) -->
-			<nav class="hidden md:flex gap-10 font-bold text-xl">
-				<a href="#home" class="hover:text-pink-500 transition">Home</a>
-				<a href="#about" class="hover:text-pink-500 transition">About</a>
-				<a href="#skills" class="hover:text-pink-500 transition">Skills</a>
-				<a href="#portfolio" class="hover:text-pink-500 transition">Portfolio</a>
-				<a href="#contact" class="hover:text-pink-500 transition">Contact</a>
-			</nav>
-
-		</div>
-
-		<!-- Menu Icon (Mobile) -->
-		<button id="menuBtn" class="md:hidden fixed top-4 cursor-pointer right-6 z-50 text-4xl focus:outline-none">
-			<i class='bx bx-menu'></i>
-		</button>
-
-		<!-- Mobile Nav (Hidden by default) -->
-		<div id="mobileNav" class="fixed top-17 right-0 h-full w-2/3 bg-blue-200/80 text-black flex flex-col justify-start items-start px-20 py-20 gap-10 p-4 font-bold text-2xl hidden transition-transform duration-700 transform translate-x-full md:hidden z-50">
-			<a href="#home" class="hover:text-pink-500 transition">Home</a>
-			<a href="#about" class="hover:text-pink-500 transition">About</a>
-			<a href="#skills" class="hover:text-pink-500 transition">Skills</a>
-			<a href="#portfolio" class="hover:text-pink-500 transition">Portfolio</a>
-			<a href="#contact" class="hover:text-pink-500 transition">Contact</a>
-		</div>
-
+		<!-- Nav Links (Desktop) -->
+		<nav class="hidden md:flex gap-10 font-bold text-xl">
+		<a href="#home" class="hover:text-pink-500 transition">Home</a>
+		<a href="#about" class="hover:text-pink-500 transition">About</a>
+		<a href="#skills" class="hover:text-pink-500 transition">Skills</a>
+		<a href="#portfolio" class="hover:text-pink-500 transition">Portfolio</a>
+		<a href="#contact" class="hover:text-pink-500 transition">Contact</a>
+		</nav>
 	</div>
+
+	<!-- Menu Icon (Mobile) -->
+	<button id="menuBtn" class="md:hidden fixed top-4 cursor-pointer right-6 z-50 text-4xl focus:outline-none">
+		<i class='bx bx-menu'></i>
+	</button>
+
+	<!-- Mobile Nav (start hidden with translate-x-full) -->
+	<div id="mobileNav" class="fixed top-17 right-0 h-full w-2/3 bg-blue-200/80 text-black flex flex-col justify-start items-start px-20 py-20 gap-10 font-bold text-2xl transform translate-x-full transition-transform duration-700 md:hidden z-40">
+		<a href="#home" class="hover:text-pink-500 transition">Home</a>
+		<a href="#about" class="hover:text-pink-500 transition">About</a>
+		<a href="#skills" class="hover:text-pink-500 transition">Skills</a>
+		<a href="#portfolio" class="hover:text-pink-500 transition">Portfolio</a>
+		<a href="#contact" class="hover:text-pink-500 transition">Contact</a>
+	</div>
+	</div>
+
 	<!-- Header -->
-	<div class="bg-blue-600 text-white px-[10%] flex justify-between items-end relative">
-	<div id="textBlock" class="flex flex-col gap-70 opacity-0 translate-x-20 transition-all duration-1000">
-		<h1 class="text-[10rem] font-extrabold pt-60 leading-[8rem] drop-shadow-lg">HE <br>LLO</h1>
-		<h2 class="font-semibold text-2xl rotate-[90deg] mb-10">Scroll down →</h2>
-	</div>
+	<div class="bg-blue-600 text-white md:px-[10%] flex md:justify-between justify-start items-end gap-40 relative ">
+		<div id="textBlock" class="flex flex-col gap-70  translate-x-20 transition-all duration-1000">
+			<h1 class="text-[10rem] font-extrabold pt-60 leading-[8rem] drop-shadow-lg ">HE <br>LLO</h1>
+			<h2 class="font-semibold text-2xl rotate-[90deg] mb-10">Scroll down →</h2>
+		</div>
 
-	<img
-		id="heroImg"
-		class="object-cover drop-shadow-2xl w-[300px] md:w-[600px] absolute right-[5%] bottom-0 md:static opacity-0 translate-x-20 transition-all duration-1000"
-		src="./images/header-img.png"
-		alt="header-img">
+		<img
+			id="heroImg"
+			class="object-cover drop-shadow-2xl w-[300px] md:w-[600px] absolute right-[5%] bottom-0 md:static  translate-x-20 transition-all duration-1000"
+			src="./images/header-img.png"
+			alt="header-img"
+		>
 	</div>
 	<!-- About section -->
-	<div id="aboutSection" class="translate-y-20 opacity-0 transition-all duration-1000">
+	<div id="aboutSection" class="translate-y-20 transition-all duration-1000">
 		<div class="px-[30%] w-full max-w-screen mx-auto">
 			<h1 class="text-center font-bold text-4xl mb-20 mt-40">About</h1>
 			<div class=" flex flex-col md:flex-row justify-start items-center gap-[150px] w-full mb-20">
@@ -118,12 +112,12 @@
 	<div id="portfolioSection" class="md:px-[20%] ml-5 mb-20">
 		<h1 class="text-center font-bold text-5xl underline decoration-4 decoration-blue-500 underline-offset-10">Portfolio</h1>
 		<div class="grid grid-cols-1 md:grid-cols-3 w-full h-full py-20 gap-5">
-			<img class="portfolio-img opacity-0 -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/portfolio-1.jpg">
-			<img class="portfolio-img opacity-0 -translate-y-10 transition-all duration-700 ease-in-out rounded-xll w-full h-full shadow-lg shadow-orange-300" src="./images/work2.jpg">
-			<img class="portfolio-img opacity-0 -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work5 (1).jpg">
-			<img class="portfolio-img opacity-0 -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work4.jpg">
-			<img class="portfolio-img opacity-0 -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work5.jpg">
-			<img class="portfolio-img opacity-0 -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work6.jpg">
+			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/portfolio-1.jpg">
+			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xll w-full h-full shadow-lg shadow-orange-300" src="./images/work2.jpg">
+			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work5 (1).jpg">
+			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work4.jpg">
+			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work5.jpg">
+			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work6.jpg">
 		</div>
 	</div>
 
@@ -229,6 +223,6 @@
 
 
 
-	<script src="./js/script.js"></script>
+	
 </body>
 </html>
