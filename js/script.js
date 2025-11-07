@@ -89,52 +89,56 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Telegram Bot logic  
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("#contactForm");
-  const sendBtn = document.querySelector("#sendBtn");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  sendBtn.disabled = true;
+  sendBtn.textContent = "Sending...";
 
-  // Enable submit when all fields are filled
-  form.addEventListener("input", () => {
-    const required = [...form.querySelectorAll("[required]")];
-    sendBtn.disabled = !required.every(input => input.value.trim());
-  });
+  const formData = {
+    name: form.userName.value.trim(),
+    email: form.userEmail.value.trim(),
+    phone: form.userPhone.value.trim(),
+    telegram: form.userTelegram.value.trim(),
+    message: form.userMessage.value.trim(),
+  };
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    sendBtn.disabled = true;
-    sendBtn.textContent = "Sending...";
+  try {
+    const res = await fetch("/api/sendMessage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-    const formData = {
-      name: form.userName.value.trim(),
-      email: form.userEmail.value.trim(),
-      phone: form.userPhone.value.trim(),
-      telegram: form.userTelegram.value.trim(),
-      message: form.userMessage.value.trim(),
-    };
-
+    // Always read response text (safe). Then try parse JSON.
+    const text = await res.text();
+    let data;
     try {
-      const res = await fetch("/api/sendMessage", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-      if (res.ok && data.ok) {
-        sendBtn.textContent = "✅ Sent!";
-        form.reset();
-      } else {
-        console.error(data);
-        sendBtn.textContent = "❌ Failed";
-      }
-    } catch (err) {
-      console.error("Network error:", err);
-      sendBtn.textContent = "⚠️ Error";
+      data = JSON.parse(text);
+    } catch (parseErr) {
+      console.warn("Response is not JSON:", text);
     }
 
-    setTimeout(() => {
-      sendBtn.textContent = "🚀 Submit";
-      sendBtn.disabled = false;
-    }, 2500);
-  });
+    console.log("Response status:", res.status);
+    console.log("Response body:", text);
+
+    if (res.ok && data && data.ok) {
+      sendBtn.textContent = "✅ Sent!";
+      form.reset();
+    } else {
+      // Show server message if available
+      const serverMsg = (data && data.error) ? data.error : text || "Unknown server error";
+      sendBtn.textContent = "❌ Error";
+      console.error("Server response:", serverMsg);
+      // Optionally show a toast or alert:
+      alert("Message not sent: " + serverMsg);
+    }
+  } catch (err) {
+    console.error("Network error:", err);
+    sendBtn.textContent = "⚠️ Network error";
+  }
+
+  setTimeout(() => {
+    sendBtn.textContent = "🚀 Submit";
+    sendBtn.disabled = false;
+  }, 2500);
 });
