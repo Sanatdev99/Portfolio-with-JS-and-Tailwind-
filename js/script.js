@@ -88,67 +88,53 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => observer.observe(el));
 });
 
+// Telegram Bot logic  
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#contactForm");
+  const sendBtn = document.querySelector("#sendBtn");
 
-
-
-
-
-		([entry]) => {
-			entry.target.classList.toggle('opacity-0', !entry.isIntersecting);
-			entry.target.classList.toggle('-translate-y-20', !entry.isIntersecting);
-		},
-		{ threshold: 0.5 }
-	);
-
-	document.querySelectorAll('#aboutSection')
-		.forEach(el => observer.observe(el));
-
-
-// Portfolio 
-const images = document.querySelectorAll('.portfolio-img');
-  const section = document.getElementById('portfolioSection');
-
-  if (section && images.length > 0) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          images.forEach((img, i) => {
-            setTimeout(() => {
-              img.classList.remove('opacity-0', '-translate-y-10');
-            }, i * 200);
-          });
-          observer.unobserve(entry.target); // Trigger only once
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(section);
-  }
-
-
-// Instead of calling Telegram API directly:
-const payload = { name, email, phone, telegram, message };
-
-try {
-  sendBtn.textContent = "⏳ Sending...";
-  sendBtn.disabled = true;
-
-  const res = await fetch("/api/sendMessage", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+  // Enable submit when all fields are filled
+  form.addEventListener("input", () => {
+    const required = [...form.querySelectorAll("[required]")];
+    sendBtn.disabled = !required.every(input => input.value.trim());
   });
 
-  const data = await res.json();
-  if (!res.ok || !data.ok) throw new Error(data.error || "Failed to send");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Sending...";
 
-  alert("✅ Message sent successfully!");
-  form.reset();
-  checkForm();
-} catch (err) {
-  console.error(err);
-  alert("⚠️ Error sending message. Please try again.");
-} finally {
-  sendBtn.textContent = "🚀 Submit";
-}
+    const formData = {
+      name: form.userName.value.trim(),
+      email: form.userEmail.value.trim(),
+      phone: form.userPhone.value.trim(),
+      telegram: form.userTelegram.value.trim(),
+      message: form.userMessage.value.trim(),
+    };
+
+    try {
+      const res = await fetch("/api/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        sendBtn.textContent = "✅ Sent!";
+        form.reset();
+      } else {
+        console.error(data);
+        sendBtn.textContent = "❌ Failed";
+      }
+    } catch (err) {
+      console.error("Network error:", err);
+      sendBtn.textContent = "⚠️ Error";
+    }
+
+    setTimeout(() => {
+      sendBtn.textContent = "🚀 Submit";
+      sendBtn.disabled = false;
+    }, 2500);
+  });
+});
