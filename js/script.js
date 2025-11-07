@@ -1,17 +1,18 @@
+// ====== 📱 Mobile Menu Toggle ======
 const menuBtn = document.querySelector('#menuBtn');
 const mobileNav = document.querySelector('#mobileNav');
 
 menuBtn.addEventListener('click', () => {
-  // Toggle slide in/out
   mobileNav.classList.toggle('translate-x-full');
 
-  // Change icon
+  // Toggle menu ↔ close icon
   const icon = menuBtn.querySelector('i');
   icon.classList.toggle('bx-menu');
   icon.classList.toggle('bx-x');
 });
 
-// JS Nice Scrolls Animation  
+
+// ====== ✨ Scroll Reveal Animations ======
 document.addEventListener('DOMContentLoaded', () => {
   const revealElements = document.querySelectorAll('.reveal');
 
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const el = entry.target;
 
       if (entry.isIntersecting) {
-        // Common fade-in
+        // Fade-in
         el.classList.add('opacity-100');
         el.classList.remove('opacity-0');
 
@@ -41,21 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 200);
         }
 
-        // ABOUT  (vertical rise)
+        // ABOUT (vertical rise)
         if (el.id === 'aboutSection') {
           el.classList.add('transition-all', 'duration-[1200ms]', 'ease-in-out', 'delay-[150ms]');
           el.classList.remove('translate-y-20');
           el.classList.add('translate-y-0', 'opacity-100');
         }
 
-        // SKILLS  (horizontal slide)
+        // SKILLS (horizontal slide)
         if (el.id === 'skillsSection') {
           el.classList.add('transition-all', 'duration-[900ms]', 'ease-out', 'delay-[200ms]');
           el.classList.remove('translate-x-[-50px]');
           el.classList.add('translate-x-0', 'opacity-100');
         }
 
-        // PORTFOLIO  (scale + staggered fade)
+        // PORTFOLIO (scale + staggered fade)
         if (el.id === 'portfolioSection') {
           el.classList.add('transition-all', 'duration-[800ms]', 'ease-in');
           el.classList.remove('scale-90');
@@ -63,11 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const images = el.querySelectorAll('.portfolio-img');
           images.forEach((img, i) => {
-            img.style.transitionDelay = `${i * 150}ms`; // stagger effect
+            img.style.transitionDelay = `${i * 150}ms`;
             img.classList.remove('-translate-y-10', 'opacity-0', 'scale-90');
             img.classList.add('translate-y-0', 'opacity-100', 'scale-100');
           });
         }
+
       } else {
         // Reset when scrolling away
         el.classList.add('opacity-0');
@@ -88,57 +90,69 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => observer.observe(el));
 });
 
-// Telegram Bot logic  
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  sendBtn.disabled = true;
-  sendBtn.textContent = "Sending...";
 
-  const formData = {
-    name: form.userName.value.trim(),
-    email: form.userEmail.value.trim(),
-    phone: form.userPhone.value.trim(),
-    telegram: form.userTelegram.value.trim(),
-    message: form.userMessage.value.trim(),
-  };
+// ====== 💬 Telegram Bot Form Logic ======
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#contactForm");
+  const sendBtn = document.querySelector("#sendBtn");
 
-  try {
-    const res = await fetch("/api/sendMessage", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+  if (!form) return; // safety
 
-    // Always read response text (safe). Then try parse JSON.
-    const text = await res.text();
-    let data;
+  // Enable submit when required fields filled
+  form.addEventListener("input", () => {
+    const required = [...form.querySelectorAll("[required]")];
+    sendBtn.disabled = !required.every(input => input.value.trim());
+  });
+
+  // Handle submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Sending...";
+
+    const formData = {
+      name: form.userName.value.trim(),
+      email: form.userEmail.value.trim(),
+      phone: form.userPhone.value.trim(),
+      telegram: form.userTelegram.value.trim(),
+      message: form.userMessage.value.trim(),
+    };
+
     try {
-      data = JSON.parse(text);
-    } catch (parseErr) {
-      console.warn("Response is not JSON:", text);
+      const res = await fetch("/api/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        console.warn("Response is not JSON:", text);
+      }
+
+      console.log("Response status:", res.status);
+      console.log("Response body:", text);
+
+      if (res.ok && data && data.ok) {
+        sendBtn.textContent = "✅ Sent!";
+        form.reset();
+      } else {
+        const serverMsg = (data && data.error) ? data.error : text || "Unknown server error";
+        sendBtn.textContent = "❌ Error";
+        console.error("Server response:", serverMsg);
+        alert("Message not sent: " + serverMsg);
+      }
+    } catch (err) {
+      console.error("Network error:", err);
+      sendBtn.textContent = "⚠️ Network error";
     }
 
-    console.log("Response status:", res.status);
-    console.log("Response body:", text);
-
-    if (res.ok && data && data.ok) {
-      sendBtn.textContent = "✅ Sent!";
-      form.reset();
-    } else {
-      // Show server message if available
-      const serverMsg = (data && data.error) ? data.error : text || "Unknown server error";
-      sendBtn.textContent = "❌ Error";
-      console.error("Server response:", serverMsg);
-      // Optionally show a toast or alert:
-      alert("Message not sent: " + serverMsg);
-    }
-  } catch (err) {
-    console.error("Network error:", err);
-    sendBtn.textContent = "⚠️ Network error";
-  }
-
-  setTimeout(() => {
-    sendBtn.textContent = "🚀 Submit";
-    sendBtn.disabled = false;
-  }, 2500);
+    setTimeout(() => {
+      sendBtn.textContent = "🚀 Submit";
+      sendBtn.disabled = false;
+    }, 2500);
+  });
 });
