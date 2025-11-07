@@ -93,62 +93,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// 		([entry]) => {
-// 			entry.target.classList.toggle('opacity-0', !entry.isIntersecting);
-// 			entry.target.classList.toggle('-translate-y-20', !entry.isIntersecting);
-// 		},
-// 		{ threshold: 0.5 }
-// 	);
+		([entry]) => {
+			entry.target.classList.toggle('opacity-0', !entry.isIntersecting);
+			entry.target.classList.toggle('-translate-y-20', !entry.isIntersecting);
+		},
+		{ threshold: 0.5 }
+	);
 
-// 	document.querySelectorAll('#aboutSection')
-// 		.forEach(el => observer.observe(el));
-
-
-// // Portfolio 
-// const images = document.querySelectorAll('.portfolio-img');
-//   const section = document.getElementById('portfolioSection');
-
-//   if (section && images.length > 0) {
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           images.forEach((img, i) => {
-//             setTimeout(() => {
-//               img.classList.remove('opacity-0', '-translate-y-10');
-//             }, i * 200);
-//           });
-//           observer.unobserve(entry.target); // Trigger only once
-//         }
-//       },
-//       { threshold: 0.5 }
-//     );
-
-//     observer.observe(section);
-//   }
+	document.querySelectorAll('#aboutSection')
+		.forEach(el => observer.observe(el));
 
 
-// // Instead of calling Telegram API directly:
-// const payload = { name, email, phone, telegram, message };
+// Portfolio 
+const images = document.querySelectorAll('.portfolio-img');
+  const section = document.getElementById('portfolioSection');
 
-// try {
-//   sendBtn.textContent = "⏳ Sending...";
-//   sendBtn.disabled = true;
+  if (section && images.length > 0) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          images.forEach((img, i) => {
+            setTimeout(() => {
+              img.classList.remove('opacity-0', '-translate-y-10');
+            }, i * 200);
+          });
+          observer.unobserve(entry.target); // Trigger only once
+        }
+      },
+      { threshold: 0.5 }
+    );
 
-//   const res = await fetch("/api/sendMessage", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(payload),
-//   });
+    observer.observe(section);
+  }
 
-//   const data = await res.json();
-//   if (!res.ok || !data.ok) throw new Error(data.error || "Failed to send");
 
-//   alert("✅ Message sent successfully!");
-//   form.reset();
-//   checkForm();
-// } catch (err) {
-//   console.error(err);
-//   alert("⚠️ Error sending message. Please try again.");
-// } finally {
-//   sendBtn.textContent = "🚀 Submit";
-// }
+// Instead of calling Telegram API directly:
+const payload = { name, email, phone, telegram, message };
+
+try {
+  sendBtn.textContent = "⏳ Sending...";
+  sendBtn.disabled = true;
+
+  const res = await fetch("/api/sendMessage", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+  if (!res.ok || !data.ok) throw new Error(data.error || "Failed to send");
+
+  alert("✅ Message sent successfully!");
+  form.reset();
+  checkForm();
+} catch (err) {
+  console.error(err);
+  alert("⚠️ Error sending message. Please try again.");
+} finally {
+  sendBtn.textContent = "🚀 Submit";
+}

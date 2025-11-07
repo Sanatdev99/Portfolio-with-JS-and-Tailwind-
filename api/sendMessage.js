@@ -1,55 +1,49 @@
-// // /api/sendMessage.js — runs on Vercel server
-// export default async function handler(req, res) {
-//   if (req.method !== "POST") {
-//     return res.status(405).json({ error: "Method not allowed" });
-//   }
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#contactForm");
+  const sendBtn = document.querySelector("#sendBtn");
 
-//   const { name, email, phone, telegram, message } = req.body || {};
-//   if (!name || !email || !phone || !message) {
-//     return res.status(400).json({ error: "Missing required fields" });
-//   }
+  form.addEventListener("input", () => {
+    const required = [...form.querySelectorAll("[required]")];
+    sendBtn.disabled = !required.every(input => input.value.trim());
+  });
 
-//   const BOT_TOKEN = process.env.BOT_TOKEN;
-//   const CHAT_ID = process.env.CHAT_ID;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Sending...";
 
-//   if (!BOT_TOKEN || !CHAT_ID) {
-//     return res.status(500).json({ error: "Server not configured correctly" });
-//   }
+    const formData = {
+      name: form.userName.value.trim(),
+      email: form.userEmail.value.trim(),
+      phone: form.userPhone.value.trim(),
+      telegram: form.userTelegram.value.trim(),
+      message: form.userMessage.value.trim(),
+    };
 
-//   const text = `<b>📩 New Message from Contact Form</b>
-// <b>👤 Name:</b> ${escape(name)}
-// <b>📧 Email:</b> ${escape(email)}
-// <b>📞 Phone:</b> ${escape(phone)}
-// <b>💬 Telegram Username:</b> ${escape(telegram || "—")}
-// <b>🗒️ Message:</b> ${escape(message)}`;
+    try {
+      const response = await fetch("/api/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-//   try {
-//     const tg = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         chat_id: CHAT_ID,
-//         text,
-//         parse_mode: "HTML",
-//       }),
-//     });
+      const data = await response.json();
 
-//     const data = await tg.json();
-//     if (!tg.ok || !data.ok) {
-//       console.error("Telegram error", data);
-//       return res.status(500).json({ error: "Telegram send failed", detail: data });
-//     }
+      if (response.ok && data.ok) {
+        sendBtn.textContent = "✅ Sent!";
+        form.reset();
+      } else {
+        console.error("Server error:", data);
+        sendBtn.textContent = "❌ Failed";
+      }
+    } catch (err) {
+      console.error("Network error:", err);
+      sendBtn.textContent = "⚠️ Network error";
+    }
 
-//     return res.status(200).json({ ok: true });
-//   } catch (err) {
-//     console.error(err);
-//     return res.status(500).json({ error: "Internal server error" });
-//   }
-// }
-
-// function escape(str = "") {
-//   return String(str)
-//     .replaceAll("&", "&amp;")
-//     .replaceAll("<", "&lt;")
-//     .replaceAll(">", "&gt;");
-// }
+    setTimeout(() => {
+      sendBtn.textContent = "🚀 Submit";
+      sendBtn.disabled = false;
+    }, 2500);
+  });
+});
