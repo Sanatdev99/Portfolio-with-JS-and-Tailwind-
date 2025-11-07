@@ -17,154 +17,167 @@
 
 	<!-- Topbar -->
 	<div class="bg-blue-600 text-white relative">
-	<div class="bg-blue-600 z-50 fixed top-0 flex justify-between items-center w-full h-17 gap-10 px-10 md:px-40 shadow-lg hover:shadow-orange-300">
-		<!-- Logo -->
-		<h1 class="font-bold text-2xl">Sanat Abdalov</h1>
+		<div class="bg-blue-600 z-50 fixed top-0 flex justify-between items-center w-full h-17 gap-10 px-10 md:px-40 shadow-lg hover:shadow-orange-300">
+			<!-- Logo -->
+			<h1 class="font-bold text-2xl">Sanat Abdalov</h1>
 
-		<!-- Nav Links (Desktop) -->
-		<nav class="hidden md:flex gap-10 font-bold text-xl">
-		<a href="#home" class="hover:text-pink-500 transition">Home</a>
-		<a href="#about" class="hover:text-pink-500 transition">About</a>
-		<a href="#skills" class="hover:text-pink-500 transition">Skills</a>
-		<a href="#portfolio" class="hover:text-pink-500 transition">Portfolio</a>
-		<a href="#contact" class="hover:text-pink-500 transition">Contact</a>
-		</nav>
-	</div>
+			<!-- Nav Links (Desktop) -->
+			<nav class="hidden md:flex gap-10 font-bold text-xl">
+			<a href="#home" class="hover:text-pink-500 transition">Home</a>
+			<a href="#about" class="hover:text-pink-500 transition">About</a>
+			<a href="#skills" class="hover:text-pink-500 transition">Skills</a>
+			<a href="#portfolio" class="hover:text-pink-500 transition">Portfolio</a>
+			<a href="#contact" class="hover:text-pink-500 transition">Contact</a>
+			</nav>
+		</div>
 
-	<!-- Menu Icon (Mobile) -->
-	<button id="menuBtn" class="md:hidden fixed top-4 cursor-pointer right-6 z-50 text-4xl focus:outline-none">
-		<i class='bx bx-menu'></i>
-	</button>
+		<!-- Menu Icon (Mobile) -->
+		<button id="menuBtn" class="md:hidden fixed top-4 cursor-pointer right-6 z-50 text-4xl focus:outline-none">
+			<i class='bx bx-menu'></i>
+		</button>
 
-	<!-- Mobile Nav (start hidden with translate-x-full) -->
-	<div id="mobileNav" class="fixed top-17 right-0 h-full w-2/3 bg-blue-200/80 text-black flex flex-col justify-start items-start px-20 py-20 gap-10 font-bold text-2xl transform translate-x-full transition-transform duration-700 md:hidden z-40">
-		<a href="#home" class="hover:text-pink-500 transition">Home</a>
-		<a href="#about" class="hover:text-pink-500 transition">About</a>
-		<a href="#skills" class="hover:text-pink-500 transition">Skills</a>
-		<a href="#portfolio" class="hover:text-pink-500 transition">Portfolio</a>
-		<a href="#contact" class="hover:text-pink-500 transition">Contact</a>
-	</div>
+		<!-- Mobile Nav (start hidden with translate-x-full) -->
+		<div id="mobileNav" class="fixed top-17 right-0 h-full w-2/3 bg-blue-200/80 text-black flex flex-col justify-start items-start px-20 py-20 gap-10 font-bold text-2xl transform translate-x-full transition-transform duration-700 md:hidden z-40">
+			<a href="#home" class="hover:text-pink-500 transition">Home</a>
+			<a href="#about" class="hover:text-pink-500 transition">About</a>
+			<a href="#skills" class="hover:text-pink-500 transition">Skills</a>
+			<a href="#portfolio" class="hover:text-pink-500 transition">Portfolio</a>
+			<a href="#contact" class="hover:text-pink-500 transition">Contact</a>
+		</div>
 	</div>
 
 	<!-- Header -->
-	<div id="headerSection" class="bg-blue-600 text-white md:px-[10%] flex md:justify-between justify-start items-end gap-40 relative overflow-hidden reveal opacity-0 duration-1000 ease-out">
-		<div id="textBlock" class="flex flex-col gap-70 translate-x-[-200px] opacity-0 transition-all duration-1000 ease-out">
+	
+	<section id="home">
+		<div id="headerSection" class="bg-blue-600 text-white md:px-[10%] flex md:justify-between justify-start items-end gap-40 relative overflow-hidden reveal opacity-0 duration-1000 ease-out">
+			<div id="textBlock" class="flex flex-col gap-70 translate-x-[-200px] opacity-0 transition-all duration-1000 ease-out">
 			<h1 class="text-[10rem] font-extrabold pt-60 leading-[8rem] drop-shadow-lg">HE <br>LLO</h1>
 			<h2 class="font-semibold text-2xl rotate-[90deg] mb-10">Scroll down →</h2>
-		</div>
+			</div>
 
-		<img
+			<img
 			id="heroImg"
 			class="object-cover drop-shadow-2xl w-[300px] md:w-[600px] absolute right-[5%] bottom-0 md:static translate-x-[200px] opacity-0 transition-all duration-1000 ease-out"
 			src="./images/header-img.png"
 			alt="header-img"
-		>
-	</div>
+			>
+		</div>
+	</section>
 
 	<!-- About section -->
-	<div id="aboutSection" class="translate-y-20 opacity-0 transition-all duration-100 reveal ease-in-out">
+	<section id="about">
+	<div id="aboutSection" class="translate-y-20 opacity-0 transition-all duration-1000 reveal ease-in-out">
 		<div class="px-[30%] w-full max-w-screen mx-auto">
-			<h1 class="text-center font-bold text-4xl mb-20 mt-40">About</h1>
-			<div class=" flex flex-col md:flex-row justify-start items-center gap-[150px] w-full mb-20">
-				<div class="w-80 h-80 bg-blue-500 rounded-full overflow-hidden shadow-xl hover:shadow-orange-300 flex items-start justify-start mx-auto shrink-0">
-					<img class="w-full h-full object-contain pt-10 " src="./images/header-img.png" alt="my-photo">
-				</div>
+		<h1 class="text-center font-bold text-4xl mb-20 mt-40">About</h1>
+		<div class="flex flex-col md:flex-row justify-start items-center gap-[150px] w-full mb-20">
+			<div class="w-80 h-80 bg-blue-500 rounded-full overflow-hidden shadow-xl hover:shadow-orange-300 flex items-start justify-start mx-auto shrink-0">
+			<img class="w-full h-full object-contain pt-10" src="./images/header-img.png" alt="my-photo">
+			</div>
 
-				<div class="flex flex-col items-start">
-					<h2 class="font-bold text-5xl text-blue-600 mb-3">I'm Sanat Abdalov</h2>
-					<h4 class="font-normal text-2xl text-zinc-400 mb-10">Web Desinger</h4>
-					<p class="font-base text-xl text-zinc-500 mb-10 leading-relaxed  max-w-[700px]">
-						As a passionate web designer, I thrive on creating visually appealing and user-friendly websites. My journey in web design began with a fascination for how design can enhance user experience.
-					</p>
-					<div class="flex gap-6">
-						<!-- Instagram -->
-						<a href="https://www.instagram.com/Sanat_abdalov_" target="_blank" rel="noopener noreferrer">
-							<i class="fa-brands fa-instagram text-3xl text-gray-800 hover:text-pink-500 transition-all"></i>
-						</a>
+			<div class="flex flex-col items-start">
+			<h2 class="font-bold text-5xl text-blue-600 mb-3">I'm Sanat Abdalov</h2>
+			<h4 class="font-normal text-2xl text-zinc-400 mb-10">Web Designer</h4>
+			<p class="font-base text-xl text-zinc-500 mb-10 leading-relaxed max-w-[700px]">
+				As a passionate web designer, I thrive on creating visually appealing and user-friendly websites. My journey in web design began with a fascination for how design can enhance user experience.
+			</p>
+			<div class="flex gap-6">
+				<!-- Instagram -->
+				<a href="https://www.instagram.com/Sanat_abdalov_" target="_blank" rel="noopener noreferrer">
+				<i class="fa-brands fa-instagram text-3xl text-gray-800 hover:text-pink-500 transition-all"></i>
+				</a>
 
-						<!-- LinkedIn -->
-						<a href="https://www.linkedin.com/in/sanat-abdalov-03b488192/" target="_blank" rel="noopener noreferrer">
-							<i class="fa-brands fa-linkedin-in text-3xl text-gray-800 hover:text-blue-400 transition-all"></i>
-						</a>
+				<!-- LinkedIn -->
+				<a href="https://www.linkedin.com/in/sanat-abdalov-03b488192/" target="_blank" rel="noopener noreferrer">
+				<i class="fa-brands fa-linkedin-in text-3xl text-gray-800 hover:text-blue-400 transition-all"></i>
+				</a>
 
-						<!-- GitHub -->
-						<a href="https://github.com/Sanatdev99" target="_blank" rel="noopener noreferrer">
-							<i class="fa-brands fa-github text-3xl text-gray-800 hover:text-blue-400 transition-all"></i>
-						</a>
-					</div>
-				</div>
+				<!-- GitHub -->
+				<a href="https://github.com/Sanatdev99" target="_blank" rel="noopener noreferrer">
+				<i class="fa-brands fa-github text-3xl text-gray-800 hover:text-blue-400 transition-all"></i>
+				</a>
+			</div>
 			</div>
 		</div>
+		</div>
 	</div>
-	<!-- Skills  -->
-	 <div id="skillsSection" class="px-5 md:px-[20%] py-20translate-y-20 opacity-0 transition-all duration-800 reveal ease-out ">
-		<h1 class="text-center font-bold text-5xl mb-20 mt-20">Skills</h1>
-		<div class=" flex-col flex md:flex-row md:justify-between justify-start items-start gap-20">
+
+	</section>
+	<!-- Skills -->
+	 
+	<section id="skills">
+		<div id="skillsSection" class="px-5 md:px-[20%] py-20 translate-y-20 opacity-0 transition-all duration-800 reveal ease-out">
+			<h1 class="text-center font-bold text-5xl mb-20 mt-20">Skills</h1>
+			<div class="flex-col flex md:flex-row md:justify-between justify-start items-start gap-20">
 			<div>
 				<h2 class="font-bold text-2xl text-zinc-700 mb-3">Development</h2>
 				<div class="flex justify-start items-start gap-10 mb-15">
-					<p class="font-medium text-lg text-zinc-500">HTML</p>
-					<p class="font-medium text-lg text-zinc-500">CSS </p>
-					<p class="font-medium text-lg text-zinc-500">JAVASCRIPT</p>
-					<p class="font-medium text-lg text-zinc-500 uppercase">TailnwindCss </p>
-					<p class="font-medium text-lg text-zinc-500">REACT </p>
-					<p class="font-medium text-lg text-zinc-500 uppercase ">TypeScript</p>
+				<p class="font-medium text-lg text-zinc-500">HTML</p>
+				<p class="font-medium text-lg text-zinc-500">CSS</p>
+				<p class="font-medium text-lg text-zinc-500">JAVASCRIPT</p>
+				<p class="font-medium text-lg text-zinc-500 uppercase">TailwindCSS</p>
+				<p class="font-medium text-lg text-zinc-500">REACT</p>
+				<p class="font-medium text-lg text-zinc-500 uppercase">TypeScript</p>
 				</div>
 				<div>
-					<h2 class="font-bold text-2xl text-zinc-700 mb-5">Design</h2>
-					<div class="flex justify-start items-start gap-10">
-						<p class="font-base text-xl text-zinc-500">FIGMA </p>
-						<p class="font-base text-xl text-zinc-500"> ADOBE XD</p>
-						<p class="font-base text-xl text-zinc-500">PHOTOSHOP</p>
-					</div>
+				<h2 class="font-bold text-2xl text-zinc-700 mb-5">Design</h2>
+				<div class="flex justify-start items-start gap-10">
+					<p class="font-base text-xl text-zinc-500">FIGMA</p>
+					<p class="font-base text-xl text-zinc-500">ADOBE XD</p>
+					<p class="font-base text-xl text-zinc-500">PHOTOSHOP</p>
+				</div>
 				</div>
 			</div>
 			<img class="w-full h-full hover:shadow-xl rounded-lg shadow-blue-950" src="./images/Skills.img">
+			</div>
 		</div>
-		
-	 </div>
+	</section>
+
 	 <!-- Portfolio -->
-	<div id="portfolioSection" class="md:px-[20%] ml-5 mb-20 translate-y-20 opacity-0 transition-all duration-700 reveal ease-in">
-		<h1 class="text-center font-bold text-5xl underline decoration-4 decoration-blue-500 underline-offset-10">Portfolio</h1>
-		<div class="grid grid-cols-1 md:grid-cols-3 w-full h-full py-20 gap-5">
-			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/portfolio-1.jpg">
-			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xll w-full h-full shadow-lg shadow-orange-300" src="./images/work2.jpg">
-			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work5 (1).jpg">
-			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work4.jpg">
-			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work5.jpg">
-			<img class="portfolio-img  -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work6.jpg">
+	<section id="portfolio">
+		<div id="portfolioSection" class="md:px-[20%] ml-5 mb-20 translate-y-20 opacity-0 transition-all duration-700 reveal ease-in">
+			<h1 class="text-center font-bold text-5xl underline decoration-4 decoration-blue-500 underline-offset-10">Portfolio</h1>
+			<div class="grid grid-cols-1 md:grid-cols-3 w-full h-full py-20 gap-5">
+			<img class="portfolio-img -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/portfolio-1.jpg">
+			<img class="portfolio-img -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work2.jpg">
+			<img class="portfolio-img -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work5 (1).jpg">
+			<img class="portfolio-img -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work4.jpg">
+			<img class="portfolio-img -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work5.jpg">
+			<img class="portfolio-img -translate-y-10 transition-all duration-700 ease-in-out rounded-xl w-full h-full shadow-lg shadow-orange-300" src="./images/work6.jpg">
+			</div>
 		</div>
-	</div>
+	</section>
+
 
 	 <!-- Contact  section-->
-	<div class="px-[20%] py-10">
-	<h1 class="text-left font-bold text-4xl mb-10 hover:text-blue-700">Contact</h1>
+	
+	<section id="contact" class="px-[20%] py-10">
+		<h1 class="text-left font-bold text-4xl mb-10 hover:text-blue-700">Contact</h1>
 
-	<form id="contactForm" class="flex flex-col gap-8 max-w-6xl">
-		<div class="flex flex-col md:flex-row gap-5">
-		<input id="userName" name="userName" type="text" placeholder="Name" required
-			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
-		<input id="userEmail" name="userEmail" type="email" placeholder="Email" required
-			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
-		</div>
+		<form id="contactForm" class="flex flex-col gap-8 max-w-6xl">
+			<div class="flex flex-col md:flex-row gap-5">
+			<input id="userName" name="userName" type="text" placeholder="Name" required
+				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
+			<input id="userEmail" name="userEmail" type="email" placeholder="Email" required
+				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
+			</div>
 
-		<div class="flex flex-col md:flex-row gap-5">
-		<input id="userPhone" name="userPhone" type="tel" placeholder="+99899-999-99-66" required
-			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
-		<input id="userTelegram" name="userTelegram" type="text" placeholder="@telegram_username (optional)"
-			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
-		</div>
+			<div class="flex flex-col md:flex-row gap-5">
+			<input id="userPhone" name="userPhone" type="tel" placeholder="+99899-999-99-66" required
+				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
+			<input id="userTelegram" name="userTelegram" type="text" placeholder="@telegram_username (optional)"
+				class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md focus:ring-2 focus:ring-blue-500" />
+			</div>
 
-		<textarea id="userMessage" name="userMessage" rows="6" placeholder="Type your message..." required
-		class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md resize-none focus:ring-2 focus:ring-blue-500"></textarea>
+			<textarea id="userMessage" name="userMessage" rows="6" placeholder="Type your message..." required
+			class="w-full border border-gray-400 px-4 py-3 text-xl rounded-md resize-none focus:ring-2 focus:ring-blue-500"></textarea>
 
-		<button id="sendBtn" type="submit"
-		class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl px-8 py-3 rounded-lg transition disabled:opacity-50"
-		disabled>
-		🚀 Submit
-		</button>
-	</form>
-	</div>
+			<button id="sendBtn" type="submit"
+			class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl px-8 py-3 rounded-lg transition disabled:opacity-50"
+			disabled>
+			🚀 Submit
+			</button>
+		</form>
+	</section>
 
 	<!-- Footer -->
 	 <footer class="bg-[#2a3b47]">
